@@ -116,17 +116,31 @@ All colors MUST be HSL.
     background-clip: text;
   }
   
+  .gradient-text-multi {
+    background: linear-gradient(135deg, #8B5CF6, #3B82F6, #EC4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
   .glass-morphism {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
   .glass-morphism-dark {
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
@@ -147,13 +161,52 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(var(--primary-gradient-start)), hsl(var(--primary-gradient-end)));
   }
   
+  .gradient-border-animated {
+    position: relative;
+    background: white;
+    background-clip: padding-box;
+  }
+  
+  .gradient-border-animated::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    z-index: -1;
+    border-radius: inherit;
+    background: conic-gradient(from 0deg, #8B5CF6, #3B82F6, #EC4899, #8B5CF6);
+    animation: rotate-border 4s linear infinite;
+  }
+  
+  .gradient-border-pricing {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    background-clip: padding-box;
+  }
+  
+  .gradient-border-pricing::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #8B5CF6, #3B82F6, #EC4899);
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  .mesh-gradient {
+    background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #EC4899 100%);
+    background-size: 200% 200%;
+    animation: mesh-gradient 60s ease infinite;
+  }
+  
   .dot-pattern {
     background-image: radial-gradient(circle, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
   }
   
   .text-shadow-glow {
-    text-shadow: 0 0 40px rgba(139, 92, 246, 0.3), 0 0 20px rgba(139, 92, 246, 0.2);
+    text-shadow: 0 0 40px rgba(139, 92, 246, 0.4), 0 0 20px rgba(139, 92, 246, 0.3);
   }
   
   .shadow-glow {
@@ -162,6 +215,10 @@ All colors MUST be HSL.
   
   .shadow-premium {
     box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.1), 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shadow-testimonial {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -195,11 +252,47 @@ All colors MUST be HSL.
 }
 
 @keyframes gradient-shift {
-  0%, 100% {
+  0% {
     background-position: 0% 50%;
   }
   50% {
     background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes mesh-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tilt {
+  0%, 100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
   }
 }
 
@@ -236,4 +329,16 @@ All colors MUST be HSL.
 .animate-gradient-shift {
   animation: gradient-shift 8s ease infinite;
   background-size: 200% 200%;
+}
+
+.animate-mesh-gradient {
+  animation: mesh-gradient 60s ease infinite;
+}
+
+.animate-rotate-border {
+  animation: rotate-border 4s linear infinite;
+}
+
+.animate-tilt {
+  animation: tilt 6s ease-in-out infinite;
 }
