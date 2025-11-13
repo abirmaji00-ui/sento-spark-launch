@@ -136,9 +136,6 @@ const Index = () => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center relative">
-            {/* Connecting Line */}
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 opacity-30" style={{ transform: 'translateY(-50%)' }} />
-
             {/* Step 1 */}
             <div className="relative flex flex-col items-center">
               <button
